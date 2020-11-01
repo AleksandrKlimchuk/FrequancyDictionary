@@ -11,9 +11,17 @@ void FrequancyDictionary::add(const std::string& word)
   hashTable_.insert({ word, 1 });
 }
 
-std::string& FrequancyDictionary::search(const std::string& word) const
+size_t FrequancyDictionary::search(const std::string& word) const
 {
-  return hashTable_.search(word).word;
+  word_t* findedWord = hashTable_.search(word);
+  if (findedWord)
+  {
+    return findedWord->frequncy;
+  }
+  else
+  {
+    std::cerr << "Dictionary don't contain \"" << word << "\" word";
+  }
 }
 
 void FrequancyDictionary::printTheMostPopularWords(std::ostream& outFile) const
